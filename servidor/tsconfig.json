@@ -12,5 +12,8 @@
     "types": ["node"],
     "skipLibCheck": true
   },
+  "scripts": {
+      "start": "node dist/servidor.js"
+    },
   "include": ["src"]
 }

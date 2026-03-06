@@ -6,8 +6,5 @@
     "rootDir": "src",
     "strict": true
   },
-  "scripts": {
-      "start": "node dist/servidor.js"
-    },
   "include": ["src/*"]
 }
