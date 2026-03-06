@@ -17,7 +17,7 @@ const ws_1 = require("ws");
 const path_1 = __importDefault(require("path"));
 const crypto_1 = require("crypto");
 const utilitats_1 = require("./joc/utilitats");
-const gestorPartida_1 = require("./joc/gestorPartida");
+const gestorPartida_js_1 = require("./joc/gestorPartida.js");
 /**
  * Creació del servidor express.
  */
@@ -84,7 +84,7 @@ wss.on("connection", (ws) => {
                 .every(j => j.preparat);
             // Si existeixen dos jugadors preparats inicia el compte enrrere.
             if (totsPreparats && jugadors.size >= 2) {
-                (0, gestorPartida_1.iniciarCompteEnrere)(wss);
+                (0, gestorPartida_js_1.iniciarCompteEnrere)(wss);
             }
         }
         // Si el missatge es moure actualitza la possicio del jugador. 
@@ -147,5 +147,5 @@ wss.on("connection", (ws) => {
    INICIAR SERVIDOR
 ============================== */
 servidorHttp.listen(PORT, () => {
-    console.log(`Servidor actiu a http://localhost:${PORT}`);
+    console.log(`Servidor actiu a http://0.0.0.0:${PORT}`);
 });
