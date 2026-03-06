@@ -12,7 +12,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import path from "path";
 import { randomUUID } from "crypto";
 
-import { Jugador } from "./models/Jugador";
+import { Jugador } from "./models/Jugador.js";
 import {
     obtenirPersonatgeAleatori,
     obtenirColorAleatori,
@@ -20,7 +20,7 @@ import {
     retornarPersonatge,
     retornarColor
 } from "./joc/utilitats";
-import { iniciarCompteEnrere } from "./joc/gestorPartida";
+import { iniciarCompteEnrere } from "./joc/gestorPartida.js";
 /**
  * Creació del servidor express.
  */
@@ -173,5 +173,5 @@ wss.on("connection", (ws) => {
 ============================== */
 
 servidorHttp.listen(PORT, () => {
-    console.log(`Servidor actiu a http://localhost:${PORT}`);
+    console.log(`Servidor actiu a http://0.0.0.0:${PORT}`);
 });
