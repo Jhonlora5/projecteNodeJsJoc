@@ -34,7 +34,7 @@ const wss = new WebSocketServer({ server: servidorHttp });
 /**
  * Creem la constant global per establir el port de connexio.
  */
-const PORT = 3000;
+const PORT = process.env.Port || 3000;
 
 /* ==============================
    SERVIR FITXERS DEL CLIENT
