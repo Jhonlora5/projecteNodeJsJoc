@@ -1,3 +1,4 @@
+// Fitxer encarrregat de dibuixar el joc en canvas.
 import { estatJoc } from "./estat/estatJoc.js";
 import { imatges } from "./recursos.js";
 
@@ -5,7 +6,7 @@ export function dibuixar(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElemen
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    // Jugadors
+    // Part encarregada de dibuixar els jugadors, carregant la imatge, color contorn...
     estatJoc.jugadors.forEach(j => {
 
         const img = imatges[j.tipus];
@@ -29,7 +30,7 @@ export function dibuixar(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElemen
         ctx.restore();
     });
 
-    // Projectils
+    // Part encarregada de dibuixar els projectils, mida, color...
     estatJoc.projectils.forEach(p => {
 
         ctx.beginPath();

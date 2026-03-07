@@ -1,3 +1,4 @@
+// Interficie encarregada de la estructura del usuari.
 export interface JugadorClient {
     id: string;
     nom: string;

@@ -1,3 +1,7 @@
+/**
+ * Gestiona les imatges de cada personatge que tenim a assets. 
+ * El nom correspon a una de les imatges.
+ */ 
 export const imatges: Record<string, HTMLImageElement> = {};
 
 const tipusPersonatges = [

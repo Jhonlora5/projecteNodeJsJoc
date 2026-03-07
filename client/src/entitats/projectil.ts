@@ -1,3 +1,4 @@
+// Interficie encarregada de l'estructura del projectil.
 export interface Projectil {
     x: number;
     y: number;

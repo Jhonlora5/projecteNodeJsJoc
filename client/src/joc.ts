@@ -13,10 +13,13 @@ canvas.height = window.innerHeight;
 carregarImatges();
 inicialitzarEntrada();
 
+// ==============================
+// CLIC ESQUERRA DEL RATOLI.
+// ==============================
 
 canvas.addEventListener("mousedown", (event) => {
 
-    if (event.button !== 0) return; // només clic esquerre
+    if (event.button !== 0) return;
 
     const jugador = estatJoc.jugadorLocal;
     if (!jugador) return;
@@ -55,67 +58,71 @@ if (botoPreparat) {
 
 connexio.onmessage = (event) => {
 
-    const dades = JSON.parse(event.data);
-    console.log("Missatge rebut:", dades);
+    try {
+        const dades = JSON.parse(event.data);
 
-    if (dades.tipus === "identitat") {
-        estatJoc.idLocal = dades.id;
-    }
 
-    if (dades.tipus === "estat") {
+        if (dades.tipus === "identitat") {
+            estatJoc.idLocal = dades.id;
+        }
 
-        estatJoc.jugadors = dades.jugadors;
+        if (dades.tipus === "estat") {
 
-        if (estatJoc.idLocal)
-            estatJoc.jugadorLocal =
-                estatJoc.jugadors.find(j => j.id === estatJoc.idLocal) || null;
-        
-        actualitzarLlistaJugadors();
-    }
-    // ==============================
-    // COMPTE ENRERE
-    // ==============================
+            estatJoc.jugadors = dades.jugadors;
 
-    if (dades.tipus === "compteEnrere") {
+            if (estatJoc.idLocal)
+                estatJoc.jugadorLocal =
+                    estatJoc.jugadors.find(j => j.id === estatJoc.idLocal) || null;
 
-        const div = document.getElementById("compteEnrere");
+            actualitzarLlistaJugadors();
+        }
+        // ==============================
+        // COMPTE ENRERE
+        // ==============================
 
-        if (div)
-            div.textContent = dades.valor >= 0 ? dades.valor : "";
-    }
+        if (dades.tipus === "compteEnrere") {
 
-    // ==============================
-    // INICI PARTIDA
-    // ==============================
+            const div = document.getElementById("compteEnrere");
 
-    if (dades.tipus === "iniciPartida") {
+            if (div)
+                div.textContent = dades.valor >= 0 ? dades.valor : "";
+        }
 
-        const menu = document.getElementById("menuInicial");
+        // ==============================
+        // INICI PARTIDA
+        // ==============================
 
-        if (menu)
-            menu.style.display = "none";
-    }
+        if (dades.tipus === "iniciPartida") {
 
-    // ==============================
-    // CREAR PROJECTIL
-    // ==============================
+            const menu = document.getElementById("menuInicial");
 
-    if (dades.tipus === "nouProjectil") {
+            if (menu)
+                menu.style.display = "none";
+        }
 
-        const longitud = Math.sqrt(dades.dx * dades.dx + dades.dy * dades.dy);
+        // ==============================
+        // CREAR PROJECTIL
+        // ==============================
 
-        const dx = dades.dx / longitud;
-        const dy = dades.dy / longitud;
+        if (dades.tipus === "nouProjectil") {
 
-        estatJoc.projectils.push({
-            x: dades.x,
-            y: dades.y,
-            dx,
-            dy,
-            velocitat: 8,
-            color: dades.color,
-            autor: dades.autor
-        });
+            const longitud = Math.sqrt(dades.dx * dades.dx + dades.dy * dades.dy);
+
+            const dx = dades.dx / longitud;
+            const dy = dades.dy / longitud;
+
+            estatJoc.projectils.push({
+                x: dades.x,
+                y: dades.y,
+                dx,
+                dy,
+                velocitat: 8,
+                color: dades.color,
+                autor: dades.autor
+            });
+        }
+    } catch (error) {
+        console.error("Error processant missatge a onmessage", error);
     }
 
 };
@@ -207,7 +214,7 @@ function actualitzarLlistaJugadors() {
     estatJoc.jugadors.forEach(j => {
 
         div.innerHTML +=
-        `<p style="color:${j.color}">
+            `<p style="color:${j.color}">
             ${j.nom} ❤️ ${j.vida} ⭐ ${j.punts}
         </p>`;
 
@@ -224,6 +231,5 @@ function actualitzarJoc() {
 
     requestAnimationFrame(actualitzarJoc);
 }
-
 
 actualitzarJoc();
