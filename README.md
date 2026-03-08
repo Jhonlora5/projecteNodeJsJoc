@@ -1,3 +1,18 @@
+EXPLICACIÓ DEL JOC:
+
+El joc consisteix en fer punts per impacte de projectil i matar altres usuaris.
+
+Amb AWDS et pots moure, clicant amb el ratoli amb el botó esquerra envies el projectil.
+Per impacte sumes 2 als punts i per matar 3.
+
+A la columna esquerra es pot visualitzar el nom de cada usuari, amb la vida corresponent,
+en inici 100, per impacte restes 5 a la vida de l'usuari impactat.
+
+Al iniciar el joc el servidor distribueix de forma aleatoria una imatge i un color per a cada usuari, a més, envia a cada usuari el comportament de cada un d'ells, es a dir, direccio projectil, posicio, color, imatge corresponent, etc.
+
+
+EXPLICACIÓ DELS DOCUMENTS:
+
 PART DORRESPONENT AL SERVIDOR:
 
     Explicació arxiu per arxiu:
